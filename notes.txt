@@ -1,0 +1,6 @@
+The server can be started by running
+    cd public
+    python3 -m http.server
+and then I can navigate to
+    http://localhost:8000
+to view my site.
