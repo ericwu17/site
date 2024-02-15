@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CSS Collection</title>
+
+    <link href="demo.css" rel="stylesheet" type="text/css" media="all">
+  </head>
+
+
+  <body>
+    <p id="firstparagraph">
+        This is a page where I'll experiment with CSS.
+        I'll use this as a personal reference of common styles in CSS.
+        You should view the source of this page, and also see the stylesheet
+        at <a href="demo.css">demo.css</a>.
+    </p>
+
+    <h2>Some basic formatting of text in paragraphs</h2>
+
+    <p>
+        In a paragraph tag, you can use span tags to change the 
+        <span id="one">color</span>
+        as well as 
+        <span id="two"">background color</span>,
+        or 
+        <span id="three">underline the text</span>.
+        There are also HTML tags to do 
+        <em>italics</em>, <strong>bold</strong>, and <u>underlining</u>.
+    <p/>
+
+    <h2>CSS box model</h2>
+    <p>
+        Recall <a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model">the CSS box model</a>. 
+        Each element in the DOM tree is basically a rectangle
+        with a padding, border, and margin. See the image below. By the way, this
+        image has a max-width of 600 pixels and is centered using <code>display:block</code>.
+    </p>
+    
+    <img src="css_box_model.png" alt="Image of the CSS Box Model" class="image">
+
+    <p>
+        Here is 
+        <span id="largespanthatwraps">
+            a single span with a lot of text in it, which might wrap. 
+            This span also has a border around it.
+        </span>
+        Resize the page and see what happens to the border. Huh, I guess the CSS box model
+        doesn't ensure that each thing is a box after all? 
+    </p>
+
+    <h2>Links and Mouseovers</h2>
+
+    <p>
+        Check out these mouseover effects of these links:
+        <a href="https://example.com" id="link1">link1</a>
+        <a href="https://example.com" id="link2">link2</a>
+        <a href="https://example.com" id="link3">link3</a>
+        And note that for link2, I also changed the color. By default, these links
+        are blue, and purple if you already visited the linked site. Both those colors
+        are changeable. You can also remove the underline, like for link3.
+    </p>
+
+    <h2>Some whitespace issues</h2>
+
+    <p>
+        Check out the difference between these spans:
+        <ul>
+            <li>
+                word <span class="simpleborder">word</span> word
+            </li>
+            <li>
+                word<span class="simpleborder"> word</span> word
+            </li>
+            <li>
+                word <span class="simpleborder">word </span>word
+            </li>
+            <li>
+                word<span class="simpleborder"> word </span>word
+            </li>
+        </ul>
+        I guess whitespace in HTML documents matters after all!
+    </p>
+
+    <!-- <h2>Putting the C in CSS</h2>
+
+    <p>
+        CSS stands for <em>cascading</em> style sheets. So how exactly
+        do the cascade rules work?
+        Note to self: come back here to calm down and experiment whenever I'm working on a page
+        and end up frustrated because the CSS I thought should apply somewhere
+        just isn't working.
+    </p>
+
+    <p id="light_blue_paragraph">
+        Here's a paragraph with a background color. And in this paragraph, there's a single
+        <span id="word_within_paragraph">word</span> that has a different background color.
+    </p>
+    TODO: more cascade rules! -->
+
+  </body>
+</html>

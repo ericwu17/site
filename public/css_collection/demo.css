@@ -1,0 +1,75 @@
+#firstparagraph {
+    font-size: 1.4em;
+}
+
+/* Applies styles to the unique tag with id="one" */
+#one {
+    color: blue;
+}
+#two {
+    background-color: lightblue;
+}
+#three{
+    text-decoration-line: underline;
+}
+
+
+#largespanthatwraps {
+    border: 1px solid black;
+}
+
+
+/* CSS for the three links */
+
+#link1:hover {
+    background-color: yellow;
+}
+
+#link2 {
+    color: blue;
+}
+#link2:visited {
+    color: pink;
+}
+#link2:hover {
+    font-size: 1.5em;
+}
+
+#link3 {
+    text-decoration: none;
+}
+#link3:hover {
+    cursor: progress;
+}
+
+
+
+img {
+    max-width: 600px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+/* Applies styles to all tags of type `code` */
+code {
+    color: maroon
+}
+
+
+/* Applies styles to the class "simpleborder" */
+.simpleborder {
+    border: 1px solid blue;
+}
+
+
+
+#light_blue_paragraph {
+    background-color: lightblue;
+}
+
+#word_within_paragraph {
+    background-color: lightgray;
+}
