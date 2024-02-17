@@ -1,0 +1,13 @@
+table, th, td {
+    border: 1px solid;
+}
+
+table {
+    margin: 10px;
+}
+
+.horizontal_flex {
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+}

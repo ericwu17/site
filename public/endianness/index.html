@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="endianness.css" rel="stylesheet" type="text/css" media="all">
+
+    <title>Endianness</title>
+  </head>
+
+  <body>
+    <h1>Why does endianness exist?</h1>
+
+    <p>
+      Recall that computers store numbers in binary. 
+      I will assume familiarity with binary and hexadecimal here. 
+      On 32-bit systems, each number is stored using 32 bits. 
+      Since each hexadecimal digit corresponds to 4 bits, 
+      a number stored in a 32-bit CPU register is represented by 8 hexadecimal digits. 
+      Such as <tt>0x01a0ff3e</tt>.
+    </p>
+
+    <p>
+      On the other hand, memory is essentially a large array of bytes, with each byte being 8 bits. 
+      So the question arises: how do you take your values, 
+      which are 32 bits wide, and store them into memory, where each "slot" is 8 bits?
+    </p>
+    
+    <p>
+    Naturally, you'd use 4 consecutive bytes to store 1 number. 
+    
+    <em>But how should those bytes be ordered? That's the matter of endianness. </em>
+    For example, if you have the number <tt>0x01a0ff3e</tt> which needs to be stored into memory, 
+    you'd break it up into 4 bytes: 
+    <tt>0x01</tt>, <tt>0xa0</tt>, <tt>0xff</tt>, and <tt>0x3e</tt>.
+    Let's say you will write these 4 bytes to memory at addresses 
+    <tt>0x1000</tt> to <tt>0x1003</tt>.
+    You might do so in one of two ways:
+    </p>
+
+    
+    <ol>
+      <li>
+        <div class="horizontal_flex">
+          <table>
+            <tr>
+              <td>memory address</td>
+              <td><tt>0x1000</tt></td>
+              <td><tt>0x1001</tt></td>
+              <td><tt>0x1002</tt></td>
+              <td><tt>0x1003</tt></td>
+            </tr>
+            <tr>
+              <td>value in memory</td>
+              <td><tt>0x01</tt></td>
+              <td><tt>0xa0</tt></td>
+              <td><tt>0xff</tt></td>
+              <td><tt>0x3e</tt></td>
+            </tr>
+          </table>
+          <p>
+            <tt>0x01a0ff3e</tt> in memory, big endian
+          </p>
+        </div>
+      </li>
+      <li>
+        <div class="horizontal_flex">
+          <table>
+            <tr>
+              <td>memory address</td>
+              <td><tt>0x1000</tt></td>
+              <td><tt>0x1001</tt></td>
+              <td><tt>0x1002</tt></td>
+              <td><tt>0x1003</tt></td>
+            </tr>
+            <tr>
+              <td>value in memory</td>
+              <td><tt>0x3e</tt></td>
+              <td><tt>0xff</tt></td>
+              <td><tt>0xa0</tt></td>
+              <td><tt>0x01</tt></td>
+            </tr>
+          </table>
+          <p>
+            <tt>0x01a0ff3e</tt> in memory, little endian
+          </p>
+        </div>
+      </li>
+    </ol>
+
+    <p>
+      The first option is called "big endian" since the most significant byte, which represents a big numerical value, is stored first.
+      The second option is called "little endian".
+      
+      You may see these abbreviated as BE (big endian) and LE (little endian).
+    </p>
+
+
+
+
+    <h1>When does endianness apply?</h1>
+
+    <p>
+      Endianness does not apply if you write a value to memory, and then try to read it. 
+      The hardware is aware of the endianness, so loads and stores will both be performed
+      in accordance to the endianness.
+    </p>
+
+    <p>
+      Endianness applies if you try and view an int one byte at a time. 
+      For example, if you convert an array of integers to an array of bytes, 
+      then endianness will determine the ordering of the bytes.
+    </p>
+
+    <p>
+      Endianness does not apply to single bytes, since they are the smallest addressable unit of memory. 
+      A single byte is always written in the same order that we write binary (or hex) numbers, 
+      which is most-significant digit first. 
+    </p>
+
+    <p>
+      Endianness does not apply for data structures like strings. 
+      In C, strings are just an array of bytes, terminated by a null byte. 
+      So strings always are always laid out in increasing address order.
+    </p>
+
+    <p>
+      Similarly, endianness does not change the ordering of arrays 
+      (although if you have an array of ints, endianness will affect how each int is represented)
+    </p>
+
+    <p>
+      Endianness applies to not only memory, but also whenever converting an int into bytes, such as:
+      <ul>
+        <li>sending numbers over a network</li>
+        <li>
+          storing numbers onto a file on disc, 
+          although if you convert numbers to ASCII characters before storing them, 
+          then endianness will not matter.
+        </li>
+      </ul>
+    </p>
+
+
+
+
+    <h1>Little Endian vs Big Endian</h1>
+
+    <p>
+      Most machines nowadays are LE. But when the internet was created, those machines were BE. 
+      So the network order today is still BE. 
+      Apparently, this is why the x86 ISA has a single instruction to swap the byte order of a register.
+    </p>
+
+    <p>
+      Some people argue different advantages and disadvantages of little vs big endian. 
+      They say that BE is a more "natural" ordering, since it matches how we write numbers. 
+      Or that LE is more efficient, because casting between <tt>int*</tt> and <tt>char*</tt> 
+      is a no-op, rather than requiring a pointer adjustment. 
+      I think it doesn't matter too much, as long as you know which one is being used.
+    </p>
+
+    
+
+
+
+
+  </body>
+</html>
